@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Splash } from "@/components/ui/splash"
+import { Header } from "@/components/ui/header"
 import { Story } from "@/components/ui/story"
 
 // import { Checkbox } from "@/components/ui/checkbox";
@@ -19,66 +20,62 @@ function App() {
   return (
     <>
       <Splash/>
+      <div className="body-container">
+        <Header/>
 
-      <div className = "next">
-      <main className="container max-w-2xl flex flex-col gap-8">
-        <h1 className="text-3xl font-extrabold mt-8 text-center">
-          What value do you want to learn more about?
-        </h1>
+        <main className="container max-w-2xl flex flex-col gap-8">
+          <form className="flex gap-2">
+            <Input
+              className="search"
+              type="text"
+              value={newValue}
+              onChange={(event) => setNewValue(event.target.value)}
+              placeholder="Choose a value: compassion, kindness, respect for a teacher..."
+            />
+            <Button
+              type="submit"
+              disabled={!newValue}
+              title={
+                newValue
+                  ? "Save your story to the database"
+                  : "You must enter a value first"
+              }
+              onClick={async (e) => {
+                e.preventDefault();
+                await fetchStory({ value: newValue });
+                setNewValue("");
+              }}
+              className="min-w-fit"
+            >
+              Save Story
+            </Button>
+          </form>
 
-        <h2 className="text-center">Let's learn about the values!</h2>
+          {/* <div className="flex justify-between items-center">
+            <Button
+              onClick={async () => {
+                await fetchStory();
+              }}
+              title="Generate a random story"
+            >
+              Generate a random story
+            </Button>
 
-        <form className="flex gap-2">
-          <Input
-            type="text"
-            value={newValue}
-            onChange={(event) => setNewValue(event.target.value)}
-            placeholder="Type your value here"
-          />
-          <Button
-            type="submit"
-            disabled={!newValue}
-            title={
-              newValue
-                ? "Save your story to the database"
-                : "You must enter a value first"
-            }
-            onClick={async (e) => {
-              e.preventDefault();
-              await fetchStory({ value: newValue });
-              setNewValue("");
-            }}
-            className="min-w-fit"
-          >
-            Save Story
-          </Button>
-        </form>
+            <div
+              className="flex gap-2"
+              title="Uh oh, this checkbox doesn't work! Until we fix it ;)"
+            >
+              
+            </div>
+          </div> */}
 
-        {/* <div className="flex justify-between items-center">
-          <Button
-            onClick={async () => {
-              await fetchStory();
-            }}
-            title="Generate a random story"
-          >
-            Generate a random story
-          </Button>
-
-          <div
-            className="flex gap-2"
-            title="Uh oh, this checkbox doesn't work! Until we fix it ;)"
-          >
-            
-          </div>
-        </div> */}
-
-        <ul>
-          {stories?.map((valueStory, i) => (
-            <li key={i}>{valueStory.story}</li>
-          ))}
-        </ul>
-        <Story/>
-      </main>
+          <ul>
+            {stories?.map((valueStory, i) => (
+              <li key={i}>{valueStory.story}</li>
+            ))}
+          </ul>
+          <Story/>
+        </main>
       </div>
     </>
   );

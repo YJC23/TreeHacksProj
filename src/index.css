@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+body {
+  font-family: "Poor Story";
+}
 .splash-container {
   position: relative;
 }
@@ -37,10 +39,9 @@
 }
 
 .subtitle {
-  font-family: "Work Sans";
-  font-size: 26px;
+  font-size: 30px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
   line-height: normal;
   border-radius: 50px;
   background: #FF962E;
@@ -52,8 +53,20 @@
   color: white;
 }
 
-.next {
-  position: relative;
+.body-container {
+  background: linear-gradient(134deg, #8FD9D1 -11.3%, #CCF7D5 62.55%);
+}
+
+h1 {
+  padding-top: 30px;
+  font-size: 80px;
+  font-weight: 700;
+}
+
+.search {
+  background-color: white;
+  font-size: 30px;
+  height: 80px;
 }
 
 @layer base {
