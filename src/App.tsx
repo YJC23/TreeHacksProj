@@ -3,6 +3,10 @@ import { api } from "../convex/_generated/api";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Splash } from "@/components/ui/splash"
+import { Header } from "@/components/ui/header"
+import { Story } from "@/components/ui/story"
+import { StoryBlock } from "@/components/ui/story-block"
 
 // import { Checkbox } from "@/components/ui/checkbox";
 // import { Label } from "@/components/ui/label";
@@ -20,82 +24,73 @@ function App() {
 
   return (
     <>
-      <main className="container max-w-2xl flex flex-col gap-8">
-        <h1 className="text-3xl font-extrabold mt-8 text-center">
-          What value do you want to learn more about?
-        </h1>
+      <Splash/>
+      <div className="body-container">
+        <Header/>
 
-        <h2 className="text-center">Let's learn about the values!</h2>
+        <main className="container max-w-2xl flex flex-col gap-8">
+          <form className="flex gap-2">
+            <Input
+              className="search"
+              type="text"
+              value={newValue}
+              onChange={(event) => setNewValue(event.target.value)}
+              placeholder="Choose a value: compassion, kindness, respect for a teacher..."
+            />
+            <Button
+              type="submit"
+              disabled={!newValue}
+              title={
+                newValue
+                  ? "Save your story to the database"
+                  : "You must enter a value first"
+              }
+              onClick={async (e) => {
+                e.preventDefault();
+                await fetchStory({ value: newValue });
+                setNewValue("");
+              }}
+              className="min-w-fit"
+            >
+              Create Story
+            </Button>
+          </form>
+          <StoryBlock>
 
-        <form className="flex gap-2">
-          <Input
-            type="text"
-            value={newValue}
-            onChange={(event) => setNewValue(event.target.value)}
-            placeholder="Type your value here"
-          />
-          <Button
-            type="submit"
-            disabled={!newValue}
-            title={
-              newValue
-                ? "Save your story to the database"
-                : "You must enter a value first"
-            }
-            onClick={async (e) => {
-              e.preventDefault();
-              await fetchIllustrations({ value: newValue });
-              setNewValue("");
-            }}
-            className="min-w-fit"
-          >
-            Save Story
-          </Button>
-        </form>
+          </StoryBlock>
 
-        {/* <div className="flex justify-between items-center">
-          <Button
-            onClick={async () => {
-              await fetchStory();
-            }}
-            title="Generate a random story"
-          >
-            Generate a random story
-          </Button>
 
-          <div
-            className="flex gap-2"
-            title="Uh oh, this checkbox doesn't work! Until we fix it ;)"
-          >
-            
-          </div>
-        </div> */}
+          {/* <div className="flex justify-between items-center">
+            <Button
+              onClick={async () => {
+                await fetchStory();
+              }}
+              title="Generate a random story"
+            >
+              Generate a random story
+            </Button>
 
-        {sentencesIllustrations &&
-          sentencesIllustrations.length > 0 &&
-          sentencesIllustrations[
-            sentencesIllustrations.length - 1
-          ].illustrationUrls.map((url: any, j: any) => (
-            <div>
-              <img key={j} src={url} alt={`Illustration ${j}`} />
-              <p>
-                {" "}
-                {
-                  sentencesIllustrations[sentencesIllustrations.length - 1]
-                    .storySentences[j]
-                }{" "}
-              </p>
+            <div
+              className="flex gap-2"
+              title="Uh oh, this checkbox doesn't work! Until we fix it ;)"
+            >
+              
             </div>
-          ))}
+          </div> */}
 
-        {/* <ul> */}
-        {/* {stories?.map((valueToIllustrations, i) => ( */}
-        {/* <li key={i}> */}
-        {/* Assuming valueToIllustrations.illustrationUrls is an array of image URLs */}
-        {/* </li> */}
-        {/* ))} */}
-        {/* </ul> */}
-      </main>
+          {/* <ul>
+            {stories?.map((valueStory, i) => (
+              <li key={i}>{valueStory.story}</li>
+            ))}
+          </ul> */}
+          <ul className="full-story">
+            {stories && stories.length > 0 && (
+              <li>{stories[stories.length - 1].story}</li>
+            )}
+          </ul>
+        </main>
+      </div>
+
     </>
   );
 }

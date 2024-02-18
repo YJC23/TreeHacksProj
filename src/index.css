@@ -2,6 +2,118 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  font-family: "Poor Story";
+}
+.splash-container {
+  position: relative;
+}
+
+.banner {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.65;
+}
+
+.splash {
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.title, .subtitle{
+  position: relative;
+  text-align: center;
+  top: 35vh;
+}
+
+.title {
+  font-family: "Darumadrop One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 120px;
+  -webkit-text-stroke: 3px white;
+  color: black;
+}
+
+.subtitle {
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 550;
+  line-height: normal;
+  border-radius: 50px;
+  background: #FF962E;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px 0px;
+  color: white;
+}
+
+.body-container {
+  background: linear-gradient(134deg, #8FD9D1 -11.3%, #CCF7D5 62.55%);
+}
+
+h1 {
+  padding-top: 20px;
+  font-size: 70px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.search {
+  background-color: white;
+  font-size: 30px;
+}
+
+Button {
+  height: 80px;
+}
+
+.image-container{
+  border-radius: 50px;
+  background: #FFF;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 780px;
+  text-align: center;
+}
+
+.caption {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600px;
+}
+
+.next-button {
+  border-radius: 20px;
+  background: linear-gradient(269deg, #0ECBE6 4.51%, #54FAFF 81.09%);
+  font-weight: 650;
+  font-size: 26px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+}
+
+.story-img {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  border-radius: 20px;
+}
+
+.full-story {
+  margin-bottom: 70px;
+}
+
 @layer base {
   :root {
     --convex-yellow: #f3b01c;
