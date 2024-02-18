@@ -10,25 +10,29 @@ function App() {
   const [newIdea, setNewIdea] = useState("");
   const [includeRandom, setIncludeRandom] = useState(true);
 
-  const ideas = useQuery(api.myFunctions.listIdeas);
-  const saveIdea = useMutation(api.myFunctions.saveIdea);
+  // const ideas = useQuery(api.myFunctions.listIdeas, { includeRandom });
+  const stories = useQuery(api.myFunctions.listStories);
+  // const saveIdea = useMutation(api.myFunctions.saveIdea);
+  const saveStory = useMutation(api.myFunctions.saveStory);
   const generateIdea = useAction(api.myFunctions.fetchRandomIdea);
 
   return (
     <>
       <main className="container max-w-2xl flex flex-col gap-8">
         <h1 className="text-3xl font-extrabold mt-8 text-center">
-          Get hacking with Convex
+          Generate a story to teach a lesson
         </h1>
 
-        <h2 className="text-center">Let's brainstorm apps to build!</h2>
+        <h2 className="text-center">
+          Teach your child a lesson about ________
+        </h2>
 
         <form className="flex gap-2">
           <Input
             type="text"
             value={newIdea}
             onChange={(event) => setNewIdea(event.target.value)}
-            placeholder="Type your app idea here"
+            placeholder="Enter value here (eg. kindness, compassion, humility, etc.)"
           />
           <Button
             type="submit"
@@ -40,12 +44,17 @@ function App() {
             }
             onClick={async (e) => {
               e.preventDefault();
-              await saveIdea({ idea: newIdea.trim(), random: false });
+              await saveStory({
+                value: newIdea.trim(),
+                story: "Return story about " + newIdea.trim(),
+                imageUrls: "Image url",
+              });
+              // await saveIdea({ idea: newIdea.trim(), random: false });
               setNewIdea("");
             }}
             className="min-w-fit"
           >
-            Save idea
+            Generate
           </Button>
         </form>
 
@@ -73,11 +82,8 @@ function App() {
         </div>
 
         <ul>
-          {ideas?.map((document, i) => (
-            <li key={i}>
-              {document.random ? "🤖 " : "💡 "}
-              {document.idea}
-            </li>
+          {stories?.map((document, i) => (
+            <li key={i}>{document.story}</li>
           ))}
         </ul>
       </main>

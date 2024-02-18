@@ -6,15 +6,62 @@ import { api } from "./_generated/api";
 // See https://docs.convex.dev/functions for more.
 
 // You can read data from the database via a query function:
-export const listIdeas = query({
+export const listStories = query({
   // Validators for arguments.
   args: {},
 
   // Query function implementation.
   handler: async (ctx, args) => {
-    // Read the database as many times as you need here.
-    // See https://docs.convex.dev/database/reading-data.
-    return await ctx.db.query("ideas").collect();
+    // if (args.value == "Kindness") {
+    return await ctx.db.query("stories").collect(); // Returns all documents in the 'ideas' table
+    // }
+    // else {
+    //   return await ctx.db
+    //     .query("stories")
+    //     .filter((q) => q.neq(q.field("random"), true)) // Only returns documents whose 'random' field is not equal to `true`
+    //     .collect();
+    // }
+  },
+});
+
+// You can write data to the database via a mutation function:
+export const saveStory = mutation({
+  // Validators for arguments.
+  args: {
+    value: v.string(),
+    story: v.string(),
+    imageUrls: v.string(),
+  },
+
+  // Mutation function implementation.
+  handler: async (ctx, args) => {
+    // Insert or modify documents in the database here.
+    // Mutations can also read from the database like queries.
+    // See https://docs.convex.dev/database/writing-data.
+
+    // Optionally, capture the ID of the newly created document
+    const id = await ctx.db.insert("stories", args);
+    // Optionally, return a value from your mutation.
+    return id;
+  },
+});
+
+export const listIdeas = query({
+  // Validators for arguments.
+  args: {
+    includeRandom: v.boolean(),
+  },
+
+  // Query function implementation.
+  handler: async (ctx, args) => {
+    if (args.includeRandom) {
+      return await ctx.db.query("ideas").collect(); // Returns all documents in the 'ideas' table
+    } else {
+      return await ctx.db
+        .query("ideas")
+        .filter((q) => q.neq(q.field("random"), true)) // Only returns documents whose 'random' field is not equal to `true`
+        .collect();
+    }
   },
 });
 
