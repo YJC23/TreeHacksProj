@@ -23,7 +23,8 @@ body {
   height: 100vh;
 }
 
-.title, .subtitle{
+.title,
+.subtitle {
   position: relative;
   text-align: center;
   top: 35vh;
@@ -44,7 +45,7 @@ body {
   font-weight: 550;
   line-height: normal;
   border-radius: 50px;
-  background: #FF962E;
+  background: #ff962e;
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
   width: 50%;
   margin-left: auto;
@@ -54,7 +55,7 @@ body {
 }
 
 .body-container {
-  background: linear-gradient(134deg, #8FD9D1 -11.3%, #CCF7D5 62.55%);
+  background: linear-gradient(134deg, #8fd9d1 -11.3%, #ccf7d5 62.55%);
 }
 
 h1 {
@@ -67,19 +68,25 @@ h1 {
 .search {
   background-color: white;
   font-size: 30px;
+  color: black;
 }
 
 Button {
   height: 80px;
+  margin-bottom: 30px;
 }
 
-.image-container{
+.buttons {
+  align-items: center;
+}
+
+.image-container {
   border-radius: 50px;
-  background: #FFF;
-  width: 65%;
+  background: #fff;
+  padding: 10px;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
-  height: 780px;
   text-align: center;
 }
 
@@ -91,12 +98,11 @@ Button {
 
 .next-button {
   border-radius: 20px;
-  background: linear-gradient(269deg, #0ECBE6 4.51%, #54FAFF 81.09%);
+  background: linear-gradient(269deg, #0ecbe6 4.51%, #54faff 81.09%);
   font-weight: 650;
   font-size: 26px;
   padding-left: 30px;
   padding-right: 30px;
-  margin-top: 18px;
   margin-left: auto;
   margin-right: auto;
   height: 50px;
@@ -111,7 +117,8 @@ Button {
 }
 
 .full-story {
-  margin-bottom: 70px;
+  /* margin-bottom: 70px; */
+  color: black;
 }
 
 @layer base {
