@@ -11,8 +11,6 @@ const ActionButton: React.FC<ActionButtonProps> = ({ children }) => (
 );
 
 const Story: React.FC = () => {
-    // You can manage state and functions here
-
     return (
         <div className="bg-teal-200 font-sans min-h-screen flex items-center justify-center">
             <div className="bg-white p-6 rounded-lg shadow-lg">

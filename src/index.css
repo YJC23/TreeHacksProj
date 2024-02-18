@@ -58,15 +58,60 @@ body {
 }
 
 h1 {
-  padding-top: 30px;
-  font-size: 80px;
+  padding-top: 20px;
+  font-size: 70px;
   font-weight: 700;
+  margin-bottom: 20px;
 }
 
 .search {
   background-color: white;
   font-size: 30px;
+}
+
+Button {
   height: 80px;
+}
+
+.image-container{
+  border-radius: 50px;
+  background: #FFF;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 780px;
+  text-align: center;
+}
+
+.caption {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600px;
+}
+
+.next-button {
+  border-radius: 20px;
+  background: linear-gradient(269deg, #0ECBE6 4.51%, #54FAFF 81.09%);
+  font-weight: 650;
+  font-size: 26px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 18px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+}
+
+.story-img {
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  border-radius: 20px;
+}
+
+.full-story {
+  margin-bottom: 70px;
 }
 
 @layer base {

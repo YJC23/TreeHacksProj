@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Splash } from "@/components/ui/splash"
 import { Header } from "@/components/ui/header"
 import { Story } from "@/components/ui/story"
+import { StoryBlock } from "@/components/ui/story-block"
 
 // import { Checkbox } from "@/components/ui/checkbox";
 // import { Label } from "@/components/ui/label";
@@ -47,9 +48,12 @@ function App() {
               }}
               className="min-w-fit"
             >
-              Save Story
+              Create Story
             </Button>
           </form>
+          <StoryBlock>
+
+          </StoryBlock>
 
           {/* <div className="flex justify-between items-center">
             <Button
@@ -69,12 +73,16 @@ function App() {
             </div>
           </div> */}
 
-          <ul>
+          {/* <ul>
             {stories?.map((valueStory, i) => (
               <li key={i}>{valueStory.story}</li>
             ))}
+          </ul> */}
+          <ul className="full-story">
+            {stories && stories.length > 0 && (
+              <li>{stories[stories.length - 1].story}</li>
+            )}
           </ul>
-          <Story/>
         </main>
       </div>
     </>
