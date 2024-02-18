@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Splash } from "@/components/ui/splash"
+import { Story } from "@/components/ui/story";
 
 // import { Checkbox } from "@/components/ui/checkbox";
 // import { Label } from "@/components/ui/label";
@@ -76,6 +77,7 @@ function App() {
             <li key={i}>{valueStory.story}</li>
           ))}
         </ul>
+        <Story/>
       </main>
       </div>
     </>
