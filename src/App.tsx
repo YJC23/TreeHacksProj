@@ -14,9 +14,13 @@ import { StoryBlock } from "@/components/ui/story-block"
 function App() {
   const [newValue, setNewValue] = useState("");
 
-  const stories = useQuery(api.myFunctions.listStories, {});
+  const sentencesIllustrations = useQuery(
+    api.myFunctions.listSentencesIllustrations,
+    {}
+  );
+  const sentenceStories = useQuery(api.myFunctions.listSentencesStory, {});
   // const generateIdea = useAction(api.myFunctions.fetchRandomIdea);
-  const fetchStory = useAction(api.myFunctions.fetchStory);
+  const fetchIllustrations = useAction(api.myFunctions.fetchIllustrations);
 
   return (
     <>
@@ -55,6 +59,7 @@ function App() {
 
           </StoryBlock>
 
+
           {/* <div className="flex justify-between items-center">
             <Button
               onClick={async () => {
@@ -85,6 +90,7 @@ function App() {
           </ul>
         </main>
       </div>
+
     </>
   );
 }
