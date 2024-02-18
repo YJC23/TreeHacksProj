@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Splash } from "@/components/ui/splash"
+import { Story } from "@/components/ui/story"
 
 // import { Checkbox } from "@/components/ui/checkbox";
 // import { Label } from "@/components/ui/label";
@@ -18,7 +19,7 @@ function App() {
   return (
     <>
       <Splash/>
-      
+
       <div className = "next">
       <main className="container max-w-2xl flex flex-col gap-8">
         <h1 className="text-3xl font-extrabold mt-8 text-center">
@@ -76,6 +77,7 @@ function App() {
             <li key={i}>{valueStory.story}</li>
           ))}
         </ul>
+        <Story/>
       </main>
       </div>
     </>

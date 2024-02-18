@@ -25,7 +25,6 @@
   position: relative;
   text-align: center;
   top: 35vh;
-  color: black;
 }
 
 .title {
@@ -34,11 +33,12 @@
   font-style: normal;
   font-size: 120px;
   -webkit-text-stroke: 3px white;
+  color: black;
 }
 
 .subtitle {
   font-family: "Work Sans";
-  font-size: 24px;
+  font-size: 26px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -48,7 +48,8 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  padding: 20px 0px;
+  padding: 15px 0px;
+  color: white;
 }
 
 .next {
