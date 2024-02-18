@@ -18,9 +18,16 @@ export default defineSchema(
       value: v.number(),
     }),
 
-    stories: defineTable({
+    valueToStory: defineTable({
       value: v.string(),
-      story: v.string(),
+      storySentences: v.array(v.string()),
+      illustrationDescriptions: v.array(v.string()),
+    }),
+
+    valueToIllustrations: defineTable({
+      value: v.string(),
+      storySentences: v.array(v.string()),
+      illustrationUrls: v.array(v.string()),
     }),
   },
   // If you ever get an error about schema mismatch

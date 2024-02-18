@@ -10,9 +10,13 @@ import { Input } from "@/components/ui/input";
 function App() {
   const [newValue, setNewValue] = useState("");
 
-  const stories = useQuery(api.myFunctions.listStories, {});
+  const sentencesIllustrations = useQuery(
+    api.myFunctions.listSentencesIllustrations,
+    {}
+  );
+  const sentenceStories = useQuery(api.myFunctions.listSentencesStory, {});
   // const generateIdea = useAction(api.myFunctions.fetchRandomIdea);
-  const fetchStory = useAction(api.myFunctions.fetchStory);
+  const fetchIllustrations = useAction(api.myFunctions.fetchIllustrations);
 
   return (
     <>
@@ -40,7 +44,7 @@ function App() {
             }
             onClick={async (e) => {
               e.preventDefault();
-              await fetchStory({ value: newValue });
+              await fetchIllustrations({ value: newValue });
               setNewValue("");
             }}
             className="min-w-fit"
@@ -67,11 +71,30 @@ function App() {
           </div>
         </div> */}
 
-        <ul>
-          {stories?.map((valueStory, i) => (
-            <li key={i}>{valueStory.story}</li>
+        {sentencesIllustrations &&
+          sentencesIllustrations.length > 0 &&
+          sentencesIllustrations[
+            sentencesIllustrations.length - 1
+          ].illustrationUrls.map((url: any, j: any) => (
+            <div>
+              <img key={j} src={url} alt={`Illustration ${j}`} />
+              <p>
+                {" "}
+                {
+                  sentencesIllustrations[sentencesIllustrations.length - 1]
+                    .storySentences[j]
+                }{" "}
+              </p>
+            </div>
           ))}
-        </ul>
+
+        {/* <ul> */}
+        {/* {stories?.map((valueToIllustrations, i) => ( */}
+        {/* <li key={i}> */}
+        {/* Assuming valueToIllustrations.illustrationUrls is an array of image URLs */}
+        {/* </li> */}
+        {/* ))} */}
+        {/* </ul> */}
       </main>
     </>
   );
