@@ -3,104 +3,76 @@ import { api } from "../convex/_generated/api";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+
+// import { Checkbox } from "@/components/ui/checkbox";
+// import { Label } from "@/components/ui/label";
 
 function App() {
-  const [newIdea, setNewIdea] = useState("");
-  const [includeRandom, setIncludeRandom] = useState(true);
+  const [newValue, setNewValue] = useState("");
 
-  // const ideas = useQuery(api.myFunctions.listIdeas, { includeRandom });
-  const stories = useQuery(api.myFunctions.listStories);
-  // const saveIdea = useMutation(api.myFunctions.saveIdea);
-  const saveStory = useMutation(api.myFunctions.saveStory);
-  const generateIdea = useAction(api.myFunctions.fetchRandomIdea);
+  const stories = useQuery(api.myFunctions.listStories, {});
+  // const generateIdea = useAction(api.myFunctions.fetchRandomIdea);
+  const fetchStory = useAction(api.myFunctions.fetchStory);
 
   return (
     <>
       <main className="container max-w-2xl flex flex-col gap-8">
         <h1 className="text-3xl font-extrabold mt-8 text-center">
-          Generate a story to teach a lesson
+          What value do you want to learn more about?
         </h1>
 
-        <h2 className="text-center">
-          Teach your child a lesson about ________
-        </h2>
+        <h2 className="text-center">Let's learn about the values!</h2>
 
         <form className="flex gap-2">
           <Input
             type="text"
-            value={newIdea}
-            onChange={(event) => setNewIdea(event.target.value)}
-            placeholder="Enter value here (eg. kindness, compassion, humility, etc.)"
+            value={newValue}
+            onChange={(event) => setNewValue(event.target.value)}
+            placeholder="Type your value here"
           />
           <Button
             type="submit"
-            disabled={!newIdea}
+            disabled={!newValue}
             title={
-              newIdea
-                ? "Save your idea to the database"
-                : "You must enter an idea first"
+              newValue
+                ? "Save your story to the database"
+                : "You must enter a value first"
             }
             onClick={async (e) => {
               e.preventDefault();
-              await saveStory({
-                value: newIdea.trim(),
-                story: "Return story about " + newIdea.trim(),
-                imageUrls: "Image url",
-              });
-              // await saveIdea({ idea: newIdea.trim(), random: false });
-              setNewIdea("");
+              await fetchStory({ value: newValue });
+              setNewValue("");
             }}
             className="min-w-fit"
           >
-            Generate
+            Save Story
           </Button>
         </form>
 
-        <div className="flex justify-between items-center">
+        {/* <div className="flex justify-between items-center">
           <Button
             onClick={async () => {
-              await generateIdea();
+              await fetchStory();
             }}
-            title="Save a randomly generated app idea to the database"
+            title="Generate a random story"
           >
-            Generate a random app idea
+            Generate a random story
           </Button>
 
           <div
             className="flex gap-2"
             title="Uh oh, this checkbox doesn't work! Until we fix it ;)"
           >
-            <Checkbox
-              id="show-random"
-              checked={includeRandom}
-              onCheckedChange={() => setIncludeRandom(!includeRandom)}
-            />
-            <Label htmlFor="show-random">Include random ideas</Label>
+            
           </div>
-        </div>
+        </div> */}
 
         <ul>
-          {stories?.map((document, i) => (
-            <li key={i}>{document.story}</li>
+          {stories?.map((valueStory, i) => (
+            <li key={i}>{valueStory.story}</li>
           ))}
         </ul>
       </main>
-      <footer className="text-center text-xs mb-5 mt-10 w-full">
-        <p>
-          Built with <a href="https://convex.dev">Convex</a>,{" "}
-          <a href="https://www.typescriptlang.org">TypeScript</a>,{" "}
-          <a href="https://react.dev">React</a>, and{" "}
-          <a href="https://vitejs.dev">Vite</a>
-        </p>
-        <p>
-          Random app ideas thanks to{" "}
-          <a target="_blank" href="https://appideagenerator.com/">
-            appideagenerator.com
-          </a>
-        </p>
-      </footer>
     </>
   );
 }
