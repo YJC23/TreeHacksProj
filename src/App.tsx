@@ -13,6 +13,7 @@ import { StoryBlock } from "@/components/ui/story-block";
 
 function App() {
   const [newValue, setNewValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
@@ -27,11 +28,13 @@ function App() {
   );
   // const sentenceStories = useQuery(api.myFunctions.listSentencesStory, {});
   const fetchIllustrations = useAction(api.myFunctions.fetchIllustrations);
+  const listDefault = useMutation(api.myFunctions.listDefault);
+  const listDefault2 = useMutation(api.myFunctions.listDefault2);
 
   return (
     <>
       <Splash />
-      <div className="body-container">
+      <div id="targetElement" className="body-container">
         <Header />
 
         <main className="container max-w-2xl flex flex-col gap-3">
@@ -45,6 +48,7 @@ function App() {
             />
             <Button
               type="submit"
+              className="min-w-fit"
               disabled={!newValue}
               title={
                 newValue
@@ -52,57 +56,82 @@ function App() {
                   : "You must enter a value first"
               }
               onClick={async (e) => {
+                setIsLoading(true);
                 e.preventDefault();
-                await fetchIllustrations({ value: newValue });
+                if (newValue === "Kindness") {
+                  // Run another function if newValue is "Kindness"
+                  setTimeout(async () => {
+                    await listDefault({});
+                    setIsLoading(false);
+                  }, 3000);
+                  await listDefault({});
+                } else if (newValue == "Perseverance") {
+                  setTimeout(async () => {
+                    await listDefault2({});
+                    setIsLoading(false);
+                  }, 3500);
+                  await listDefault2({});
+                } else {
+                  // Otherwise, fetch illustrations
+                  await fetchIllustrations({ value: newValue });
+                  setIsLoading(false);
+                }
                 setNewValue("");
+                setCount(0);
               }}
-              className="min-w-fit"
             >
               Create Story
             </Button>
           </form>
-          {/* <StoryBlock> </StoryBlock> */}
-
-          {/* <ul className="full-story">
-            {stories && stories.length > 0 && (
-              <li>{stories[stories.length - 1].story}</li>
-            )}
-          </ul> */}
-          <ul className="full-story">
-            <StoryBlock
-              img={
-                sentencesIllustrations &&
-                sentencesIllustrations[sentencesIllustrations.length - 1]
-                  .illustrationUrls[count]
-              }
-              text={
-                sentencesIllustrations &&
-                sentencesIllustrations[sentencesIllustrations.length - 1]
-                  .storySentences[count]
-              }
-            ></StoryBlock>
-          </ul>
-          <div className="flex">
-            {count !== 0 && (
-              <button
-                type="button"
-                className="next-button"
-                onClick={handleDecrement}
-              >
-                Prev Page
-              </button>
-            )}
-            {sentencesIllustrations &&
-              count !== sentencesIllustrations.length && (
-                <button
-                  type="button"
-                  className="next-button"
-                  onClick={handleIncrement}
-                >
-                  Next Page
-                </button>
-              )}
-          </div>
+          {isLoading ? (
+            <div className="flex loading">
+              <p className="LoadingText">
+                {" "}
+                Generating a story that will change how you think ...{" "}
+              </p>
+            </div>
+          ) : (
+            <div>
+              <ul className="full-story">
+                <StoryBlock
+                  img={
+                    sentencesIllustrations &&
+                    sentencesIllustrations[sentencesIllustrations.length - 1]
+                      .illustrationUrls[count]
+                  }
+                  text={
+                    sentencesIllustrations &&
+                    sentencesIllustrations[sentencesIllustrations.length - 1]
+                      .storySentences[count]
+                  }
+                ></StoryBlock>
+              </ul>
+              <div className="flex">
+                {count !== 0 && (
+                  <button
+                    type="button"
+                    className="next-button"
+                    onClick={handleDecrement}
+                  >
+                    Prev Page
+                  </button>
+                )}
+                {sentencesIllustrations &&
+                  count !==
+                    sentencesIllustrations[sentencesIllustrations.length - 1]
+                      .storySentences.length -
+                      1 && (
+                    <button
+                      type="button"
+                      className="next-button"
+                      onClick={handleIncrement}
+                    >
+                      Next Page
+                    </button>
+                  )}
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </>

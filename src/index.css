@@ -76,8 +76,8 @@ Button {
   margin-bottom: 30px;
 }
 
-.buttons {
-  align-items: center;
+Button:focus {
+  color: grey;
 }
 
 .image-container {
@@ -104,8 +104,16 @@ Button {
   padding-left: 30px;
   padding-right: 30px;
   margin-left: auto;
+  margin-top: 15px;
   margin-right: auto;
   height: 50px;
+}
+
+.loading {
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  margin-bottom: 50px;
 }
 
 .story-img {
