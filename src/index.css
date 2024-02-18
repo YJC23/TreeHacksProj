@@ -2,6 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.splash-container {
+  position: relative;
+}
+
+.banner {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  opacity: 0.65;
+}
+
+.splash {
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+.title, .subtitle{
+  position: relative;
+  text-align: center;
+  top: 35vh;
+  color: black;
+}
+
+.title {
+  font-family: "Darumadrop One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 120px;
+  -webkit-text-stroke: 3px white;
+}
+
+.subtitle {
+  font-family: "Work Sans";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 50px;
+  background: #FF962E;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 0px;
+}
+
+.next {
+  position: relative;
+}
+
 @layer base {
   :root {
     --convex-yellow: #f3b01c;

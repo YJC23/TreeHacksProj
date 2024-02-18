@@ -3,6 +3,7 @@ import { api } from "../convex/_generated/api";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Splash } from "@/components/ui/splash"
 
 // import { Checkbox } from "@/components/ui/checkbox";
 // import { Label } from "@/components/ui/label";
@@ -16,6 +17,9 @@ function App() {
 
   return (
     <>
+      <Splash/>
+      
+      <div className = "next">
       <main className="container max-w-2xl flex flex-col gap-8">
         <h1 className="text-3xl font-extrabold mt-8 text-center">
           What value do you want to learn more about?
@@ -73,6 +77,7 @@ function App() {
           ))}
         </ul>
       </main>
+      </div>
     </>
   );
 }
